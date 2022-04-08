@@ -40,6 +40,7 @@ dependencies:
   flutter_svg:
   speech_to_text: ^5.4.3
   country_code_picker: ^2.0.2
+  firebase_auth: 3.3.13
 
 dev_dependencies:
   flutter_test:

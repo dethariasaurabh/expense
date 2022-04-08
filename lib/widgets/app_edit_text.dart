@@ -12,6 +12,7 @@ class AppEditText extends StatefulWidget {
   final TextInputAction textInputAction;
   final TextInputType textInputType;
   final ValueChanged<String>? onTextChange;
+  final int? maxLength;
 
   const AppEditText({
     Key? key,
@@ -21,7 +22,8 @@ class AppEditText extends StatefulWidget {
     required this.textStyle,
     required this.textInputAction,
     required this.textInputType,
-    required this.onTextChange,
+    this.onTextChange,
+    this.maxLength,
   }) : super(key: key);
 
   @override
@@ -39,6 +41,7 @@ class _AppEditTextState extends State<AppEditText> {
       keyboardType: widget.textInputType,
       keyboardAppearance: Brightness.light,
       onChanged: widget.onTextChange,
+      maxLength: widget.maxLength,
       decoration: InputDecoration(
         hintText: StringKeys.phoneNumberHint.tr,
         focusedBorder: OutlineInputBorder(

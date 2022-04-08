@@ -1,5 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:expense/res/strings/str_keys.dart';
+import 'package:expense/services/firebase_servcies.dart';
 import 'package:expense/theme/app_colors.dart';
 import 'package:expense/theme/app_dimens.dart';
 import 'package:expense/theme/app_text_style.dart';
@@ -82,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Expanded(
                     child: AppEditText(
-                      hintText: StringKeys.phoneNumberHint.tr,
+                      hintText: StringKeys.confirmationCodeHint.tr,
                       focusNode: phoneNumberFieldFocusNode,
                       textEditingController: _phoneNumberController,
                       textStyle: AppTextStyle.mediumText,
@@ -108,7 +109,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   isEnabled: _errorText.value.isEmpty,
                   focusNode: phoneNumberFieldFocusNode,
                   buttonText: StringKeys.signInButton.tr,
-                  buttonTapEvent: () {},
+                  buttonTapEvent: () {
+                    FirebaseServices().signInWithPhoneNumber(
+                      buildContext: context,
+                      phoneNumber: _countryCode + _phoneNumberController.text,
+                    );
+                  },
                 ),
               ),
               const SizedBox(

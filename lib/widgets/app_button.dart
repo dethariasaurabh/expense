@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 class AppButton extends StatelessWidget {
   final bool isEnabled;
   final String buttonText;
-  final Function() buttonTapEvent;
+  final Function()? buttonTapEvent;
   final FocusNode? focusNode;
 
   const AppButton({
     Key? key,
     required this.isEnabled,
     required this.buttonText,
-    required this.buttonTapEvent,
+    this.buttonTapEvent,
     this.focusNode,
   }) : super(key: key);
 
@@ -24,7 +24,7 @@ class AppButton extends StatelessWidget {
         if (focusNode != null) {
           focusNode!.unfocus();
         }
-        buttonTapEvent();
+        buttonTapEvent?.call();
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
