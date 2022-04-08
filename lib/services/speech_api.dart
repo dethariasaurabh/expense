@@ -19,7 +19,10 @@ class SpeechApi {
       onError: (e) {
         print('Error: $e');
         Get.showSnackbar(
-          GetSnackBar(title: "Error", message: e.toString(),),
+          GetSnackBar(
+            title: "Error",
+            message: e.toString(),
+          ),
         );
       },
     );

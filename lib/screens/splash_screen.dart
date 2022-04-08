@@ -14,7 +14,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -51,14 +50,13 @@ class _SplashScreenState extends State<SplashScreen> {
                   Images.mainLogo,
                   width: 100.0,
                   height: 100.0,
-                 ),
+                ),
                 const SizedBox(
                   height: 10.0,
                 ),
                 Text(
                   StringKeys.appTitle.tr,
-                  style: AppTextStyle.xxLargeBlackText.copyWith(
-                  ),
+                  style: AppTextStyle.xxLargeBlackText.copyWith(),
                 ),
               ],
             ),

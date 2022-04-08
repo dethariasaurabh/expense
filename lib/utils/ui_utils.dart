@@ -27,11 +27,11 @@ double getScreenHeight(BuildContext context) {
 /// Navigate function
 Future navigateTo(Widget screen,
     {Transition? transition,
-      bool clearStack = false,
-      bool offCurrentScreen = false,
-      bool preventDuplicates = false,
-      Duration? duration,
-      bool popGesture = true}) async {
+    bool clearStack = false,
+    bool offCurrentScreen = false,
+    bool preventDuplicates = false,
+    Duration? duration,
+    bool popGesture = true}) async {
   final t = transition ?? Transition.rightToLeftWithFade;
   final d = duration ?? const Duration(milliseconds: 250);
   if (clearStack) {

@@ -57,28 +57,26 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Row(
                 children: [
-                   Container(
-                     decoration: BoxDecoration(
-                       borderRadius: BorderRadius.circular(
-                         Dimens.radius10,
-                       ),
-                       border: Border.all(
-                         color: AppColors.subTitleColor,
-                       ),
-                     ),
-                     child: CountryCodePicker(
-                       showFlag: false,
-                       initialSelection: 'US',
-                       showFlagDialog: true,
-                       dialogSize: Size(
-                         getScreenWidth(context) - 50,
-                         getScreenHeight(context) - 100
-                       ),
-                      onChanged: (countryCode) {
-                          _countryCode.value = countryCode.dialCode!;
-                       },
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        Dimens.radius10,
                       ),
-                   ),
+                      border: Border.all(
+                        color: AppColors.subTitleColor,
+                      ),
+                    ),
+                    child: CountryCodePicker(
+                      showFlag: false,
+                      initialSelection: 'US',
+                      showFlagDialog: true,
+                      dialogSize: Size(getScreenWidth(context) - 50,
+                          getScreenHeight(context) - 100),
+                      onChanged: (countryCode) {
+                        _countryCode.value = countryCode.dialCode!;
+                      },
+                    ),
+                  ),
                   const SizedBox(
                     width: Dimens.width10,
                   ),
@@ -90,17 +88,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       textStyle: AppTextStyle.mediumText,
                       textInputAction: TextInputAction.done,
                       textInputType: TextInputType.number,
-                      onTextChange: (phoneNumber) => validatePhoneNumber(phoneNumber),
+                      onTextChange: (phoneNumber) =>
+                          validatePhoneNumber(phoneNumber),
                     ),
                   ),
                 ],
               ),
-              Obx(() => Text(
-                _errorText.value,
-                style: AppTextStyle.mediumText.copyWith(
-                  color: AppColors.errorTextColor,
+              Obx(
+                () => Text(
+                  _errorText.value,
+                  style: AppTextStyle.mediumText.copyWith(
+                    color: AppColors.errorTextColor,
+                  ),
                 ),
-              ),),
+              ),
               const Spacer(),
               Obx(
                 () => AppButton(
@@ -108,7 +109,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   focusNode: phoneNumberFieldFocusNode,
                   buttonText: StringKeys.signInButton.tr,
                   buttonTapEvent: () {
-                    print('Tapped here: $_countryCode ${_phoneNumberController.text}');
+                    print(
+                        'Tapped here: $_countryCode ${_phoneNumberController.text}');
                   },
                 ),
               ),
@@ -126,8 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (phoneNumber.isEmpty) {
       _errorText.value = 'Please enter the phone number';
       return false;
-    } else if (!phoneNumber.isNumericOnly ||
-        !phoneNumber.isPhoneNumber) {
+    } else if (!phoneNumber.isNumericOnly || !phoneNumber.isPhoneNumber) {
       _errorText.value = 'Please enter valid phone number';
       return false;
     } else {
@@ -135,5 +136,4 @@ class _LoginScreenState extends State<LoginScreen> {
       return true;
     }
   }
-
 }

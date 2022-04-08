@@ -1,6 +1,4 @@
-
 class Dimens {
-
   // Default font size
   static const double fontSize10 = 10.0;
   static const double fontSize12 = 12.0;

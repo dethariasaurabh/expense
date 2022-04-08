@@ -9,13 +9,14 @@ class AppButton extends StatelessWidget {
   final Function() buttonTapEvent;
   final FocusNode? focusNode;
 
-  const AppButton({Key? key,
+  const AppButton({
+    Key? key,
     required this.isEnabled,
     required this.buttonText,
     required this.buttonTapEvent,
     this.focusNode,
   }) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -33,12 +34,14 @@ class AppButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(
             Dimens.radius10,
           ),
-          boxShadow: isEnabled ? const [
-            BoxShadow(
-              color: AppColors.primaryColor,
-              blurRadius: Dimens.radius10,
-            ),
-          ] : const [],
+          boxShadow: isEnabled
+              ? const [
+                  BoxShadow(
+                    color: AppColors.primaryColor,
+                    blurRadius: Dimens.radius10,
+                  ),
+                ]
+              : const [],
         ),
         child: Center(
           child: Text(

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get_utils/get_utils.dart';
 
 class AppEditText extends StatefulWidget {
-
   final String hintText;
   final TextEditingController textEditingController;
   final FocusNode focusNode;
@@ -32,7 +31,7 @@ class AppEditText extends StatefulWidget {
 class _AppEditTextState extends State<AppEditText> {
   @override
   Widget build(BuildContext context) {
-    return  TextFormField(
+    return TextFormField(
       focusNode: widget.focusNode,
       controller: widget.textEditingController,
       style: widget.textStyle,
