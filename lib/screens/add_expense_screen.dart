@@ -71,7 +71,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
           setState(() => this.isListening = isListening);
 
           if (!isListening) {
-            Future.delayed(Duration(seconds: 1), () {
+            Future.delayed(const Duration(seconds: 1), () {
               // Utils.scanText(text);
             });
           }

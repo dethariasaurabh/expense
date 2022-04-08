@@ -108,10 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   isEnabled: _errorText.value.isEmpty,
                   focusNode: phoneNumberFieldFocusNode,
                   buttonText: StringKeys.signInButton.tr,
-                  buttonTapEvent: () {
-                    print(
-                        'Tapped here: $_countryCode ${_phoneNumberController.text}');
-                  },
+                  buttonTapEvent: () {},
                 ),
               ),
               const SizedBox(

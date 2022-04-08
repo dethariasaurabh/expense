@@ -1,3 +1,5 @@
+import 'package:expense/theme/app_colors.dart';
+import 'package:expense/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,7 +14,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: [],
+        children: [
+          Text(
+            'Welcome!',
+            style: AppTextStyle.mediumText.copyWith(
+              color: AppColors.secondaryTextColor,
+            ),
+          ),
+        ],
       ),
     );
   }
