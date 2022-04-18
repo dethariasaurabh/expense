@@ -1,4 +1,5 @@
-import 'package:expense/screens/code_verification_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expense/screens/onboarding/code_verification_screen.dart';
 import 'package:expense/utils/ui_utils.dart';
 import 'package:expense/widgets/app_alert_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,7 +7,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 
 class FirebaseServices {
-  FirebaseAuth auth = FirebaseAuth.instance;
+  static FirebaseAuth auth = FirebaseAuth.instance;
+  static FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   static initFirebase() async {
     await Firebase.initializeApp();
@@ -40,5 +42,25 @@ class FirebaseServices {
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
     );
+  }
+
+  static User? getCurrentUser() {
+    if (auth.currentUser == null) return null;
+    return auth.currentUser;
+  }
+
+  static Future<DocumentSnapshot> getUserData(String userUid) async {
+    final CollectionReference snapShot = firestore.collection('users');
+    final DocumentSnapshot data = await snapShot.doc(userUid).get();
+    return data;
+  }
+
+  static Future<void> setUserData({
+    required String userUid,
+    required Map<String, dynamic> appUser,
+  }) async {
+    await firestore.collection('users').doc(userUid).set(appUser).then((value) {
+      return value;
+    });
   }
 }

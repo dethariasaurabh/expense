@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expense/model/user_model.dart';
 import 'package:expense/res/strings/str_keys.dart';
 import 'package:expense/screens/home_screen.dart';
+import 'package:expense/screens/onboarding/create_account.dart';
+import 'package:expense/screens/onboarding/widgets/header.dart';
+import 'package:expense/services/firebase_servcies.dart';
 import 'package:expense/theme/app_colors.dart';
 import 'package:expense/theme/app_dimens.dart';
 import 'package:expense/theme/app_text_style.dart';
@@ -33,6 +38,7 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
   final FocusNode verificationCodeFieldFocusNode = FocusNode();
 
   final Rx<String> _errorText = ''.obs;
+  final Rx<bool> _isEdited = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -49,45 +55,28 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                StringKeys.confirmationCodeTitle.tr,
-                style: AppTextStyle.xLargeBoldText,
-              ),
-              const SizedBox(
-                height: Dimens.height20,
-              ),
-              Text(
-                StringKeys.confirmationCodeBody.tr,
-                style: AppTextStyle.mediumText.copyWith(
-                  color: AppColors.secondaryTextColor,
-                ),
-              ),
-              const SizedBox(
-                height: Dimens.height20,
-              ),
-              AppEditText(
-                hintText: StringKeys.confirmationCodeBody.tr,
-                focusNode: verificationCodeFieldFocusNode,
-                textEditingController: _confirmationCodeController,
-                textStyle: AppTextStyle.mediumText,
-                maxLength: 6,
-                textInputAction: TextInputAction.done,
-                textInputType: TextInputType.number,
-                onTextChange: (confirmationCode) =>
-                    validateConfirmationCode(confirmationCode),
+              HeaderWidget(
+                title: StringKeys.confirmationCodeTitle.tr,
+                desc: StringKeys.confirmationCodeBody.tr,
               ),
               Obx(
-                () => Text(
-                  _errorText.value,
-                  style: AppTextStyle.mediumText.copyWith(
-                    color: AppColors.errorTextColor,
-                  ),
+                () => AppEditText(
+                  hintText: StringKeys.confirmationCodeBody.tr,
+                  focusNode: verificationCodeFieldFocusNode,
+                  textEditingController: _confirmationCodeController,
+                  textStyle: AppTextStyle.mediumText,
+                  maxLength: 6,
+                  textInputAction: TextInputAction.done,
+                  textInputType: TextInputType.number,
+                  errorText: _errorText.value,
+                  onTextChange: (confirmationCode) =>
+                      validateConfirmationCode(confirmationCode),
                 ),
               ),
               const Spacer(),
               Obx(
                 () => AppButton(
-                  isEnabled: _errorText.value.isEmpty,
+                  isEnabled: _isEdited.value && _errorText.value.isEmpty,
                   focusNode: verificationCodeFieldFocusNode,
                   buttonText: StringKeys.signInButton.tr,
                   buttonTapEvent: () {
@@ -107,6 +96,7 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
   }
 
   bool validateConfirmationCode(String confirmationCode) {
+    _isEdited.value = true;
     if (confirmationCode.isEmpty) {
       _errorText.value = 'Please enter confirmation code.';
       return false;
@@ -130,8 +120,32 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
     UserCredential userCredential =
         await widget.firebaseAuth.signInWithCredential(credential);
 
-    if (userCredential.user != null) {
-      navigateTo(const HomeScreen(), clearStack: true);
+    final User? user = userCredential.user;
+
+    if (user != null) {
+      // Check if the user is registered or not
+      final DocumentSnapshot userData =
+          await FirebaseServices.getUserData(user.uid);
+
+      if (!userData.exists) {
+        UserModel userObj = UserModel(
+          userUid: user.uid,
+          phoneNumber: user.phoneNumber ?? '',
+          userName: user.displayName ?? '',
+        );
+
+        navigateTo(
+          CreateAccount(
+            userObj: userObj,
+          ),
+          clearStack: true,
+        );
+      } else {
+        navigateTo(
+          const HomeScreen(),
+          clearStack: true,
+        );
+      }
     }
   }
 }

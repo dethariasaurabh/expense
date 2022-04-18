@@ -1,5 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:expense/res/strings/str_keys.dart';
+import 'package:expense/screens/onboarding/widgets/header.dart';
 import 'package:expense/services/firebase_servcies.dart';
 import 'package:expense/theme/app_colors.dart';
 import 'package:expense/theme/app_dimens.dart';
@@ -24,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final Rx<String> _countryCode = '+1'.obs;
   final Rx<String> _errorText = ''.obs;
+  final Rx<bool> _isEdited = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -40,73 +42,15 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                StringKeys.signInTitle.tr,
-                style: AppTextStyle.xLargeBoldText,
+              HeaderWidget(
+                title: StringKeys.signInTitle.tr,
+                desc: StringKeys.signInBody.tr,
               ),
-              const SizedBox(
-                height: Dimens.height20,
-              ),
-              Text(
-                StringKeys.signInBody.tr,
-                style: AppTextStyle.mediumText.copyWith(
-                  color: AppColors.secondaryTextColor,
-                ),
-              ),
-              const SizedBox(
-                height: Dimens.height20,
-              ),
-              Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        Dimens.radius10,
-                      ),
-                      border: Border.all(
-                        color: AppColors.subTitleColor,
-                      ),
-                    ),
-                    child: CountryCodePicker(
-                      showFlag: false,
-                      initialSelection: 'US',
-                      showFlagDialog: true,
-                      dialogSize: Size(getScreenWidth(context) - 50,
-                          getScreenHeight(context) - 100),
-                      onChanged: (countryCode) {
-                        _countryCode.value = countryCode.dialCode!;
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    width: Dimens.width10,
-                  ),
-                  Expanded(
-                    child: AppEditText(
-                      hintText: StringKeys.confirmationCodeHint.tr,
-                      focusNode: phoneNumberFieldFocusNode,
-                      textEditingController: _phoneNumberController,
-                      textStyle: AppTextStyle.mediumText,
-                      textInputAction: TextInputAction.done,
-                      textInputType: TextInputType.number,
-                      onTextChange: (phoneNumber) =>
-                          validatePhoneNumber(phoneNumber),
-                    ),
-                  ),
-                ],
-              ),
-              Obx(
-                () => Text(
-                  _errorText.value,
-                  style: AppTextStyle.mediumText.copyWith(
-                    color: AppColors.errorTextColor,
-                  ),
-                ),
-              ),
+              phoneNumberInputWidget(),
               const Spacer(),
               Obx(
                 () => AppButton(
-                  isEnabled: _errorText.value.isEmpty,
+                  isEnabled: _isEdited.value && _errorText.value.isEmpty,
                   focusNode: phoneNumberFieldFocusNode,
                   buttonText: StringKeys.signInButton.tr,
                   buttonTapEvent: () {
@@ -127,7 +71,54 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Widget phoneNumberInputWidget() {
+    return Row(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(
+              Dimens.radius10,
+            ),
+            border: Border.all(
+              color: AppColors.subTitleColor,
+            ),
+          ),
+          child: CountryCodePicker(
+            showFlag: false,
+            initialSelection: 'US',
+            showFlagDialog: true,
+            dialogSize: Size(
+                getScreenWidth(context) - 50, getScreenHeight(context) - 100),
+            onChanged: (countryCode) {
+              _countryCode.value = countryCode.dialCode!;
+            },
+          ),
+        ),
+        const SizedBox(
+          width: Dimens.width10,
+        ),
+        Expanded(
+          child: Obx(
+            () {
+              return AppEditText(
+                hintText: StringKeys.confirmationCodeHint.tr,
+                focusNode: phoneNumberFieldFocusNode,
+                textEditingController: _phoneNumberController,
+                textStyle: AppTextStyle.mediumText,
+                textInputAction: TextInputAction.done,
+                textInputType: TextInputType.number,
+                onTextChange: (phoneNumber) => validatePhoneNumber(phoneNumber),
+                errorText: _errorText.value,
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
   bool validatePhoneNumber(String phoneNumber) {
+    _isEdited.value = true;
     if (phoneNumber.isEmpty) {
       _errorText.value = 'Please enter the phone number';
       return false;

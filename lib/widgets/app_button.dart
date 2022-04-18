@@ -20,12 +20,14 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        if (focusNode != null) {
-          focusNode!.unfocus();
-        }
-        buttonTapEvent?.call();
-      },
+      onTap: isEnabled
+          ? () {
+              if (focusNode != null) {
+                focusNode!.unfocus();
+              }
+              buttonTapEvent?.call();
+            }
+          : null,
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: Dimens.height50,

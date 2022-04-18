@@ -11,4 +11,13 @@ Map<String, String> stringsEn = {
   StringKeys.confirmationCodeBody:
       'Please enter the confirmation code sent over your phone number.',
   StringKeys.confirmationCodeHint: 'Confirmation code',
+  StringKeys.createAccountTitle: 'Create Account',
+  StringKeys.createAccountBody: 'Please sign up to continue',
+  StringKeys.emptyUserNameError: 'Please enter your name.',
+  StringKeys.invalidUserNameError:
+      'Name should not contain number or any special characters.',
+  StringKeys.createAccountButton: 'Create Account',
+  StringKeys.tncAccepted:
+      'By creating an account, I agree to the Terms of usage and Privacy Policy.',
+  StringKeys.fullNameHint: 'Full name',
 };

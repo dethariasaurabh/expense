@@ -20,6 +20,17 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.591930264241-2ocmejc81e5v6vdii5m3r06di7lg8q8s</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -29,6 +40,10 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App requires permission to listen audio and turn into text for the input.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>App requires permission to listen audio and turn into text for the input.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -48,9 +63,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>App requires permission to listen audio and turn into text for the input.</string>
-	<key>NSMicrophoneUsageDescription</key>
-    	<string>App requires permission to listen audio and turn into text for the input.</string>
 </dict>
 </plist>

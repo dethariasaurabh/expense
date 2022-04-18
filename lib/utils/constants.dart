@@ -1,4 +1,8 @@
-class Constant {
-  static String enUs = 'en_US';
-  static String hiIn = 'hi_IN';
+enum ErrorType {
+  emptyFieldError,
+  invalidFieldError,
+  none,
 }
+const String enUs = 'en_US';
+const String hiIn = 'hi_IN';
+RegExp userNameRegExp = RegExp(r'[a-zA-Z ]');

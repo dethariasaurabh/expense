@@ -1,7 +1,10 @@
 import 'package:expense/res/images/images.dart';
 import 'package:expense/res/strings/str_keys.dart';
-import 'package:expense/screens/login_screen.dart';
+import 'package:expense/screens/home_screen.dart';
+import 'package:expense/screens/onboarding/login_screen.dart';
+import 'package:expense/services/firebase_servcies.dart';
 import 'package:expense/theme/app_text_style.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -18,7 +21,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      Get.to(() => const LoginScreen());
+      User? currentUser = FirebaseServices.getCurrentUser();
+      Get.to(() => currentUser == null || currentUser.uid.isEmpty
+          ? const LoginScreen()
+          : const HomeScreen());
     });
   }
 
