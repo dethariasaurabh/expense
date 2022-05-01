@@ -12,7 +12,8 @@ import 'package:expense/widgets/app_edit_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-GlobalKey<_LoginScreenState> loginScreenGlobalKey = GlobalKey<_LoginScreenState>();
+GlobalKey<_LoginScreenState> loginScreenGlobalKey =
+    GlobalKey<_LoginScreenState>();
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

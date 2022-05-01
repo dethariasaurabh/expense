@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (currentUser == null || currentUser.uid.isEmpty) {
         Get.to(
           () => LoginScreen(
-              key: loginScreenGlobalKey,
+            key: loginScreenGlobalKey,
           ),
         );
       } else {

@@ -16,7 +16,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 
 void main() {
-
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -52,17 +51,20 @@ void main() {
     );
 
     final phoneNumberFieldFinder = find.byKey(phoneNumberEditTextKey);
-    final phoneNumberInput = tester.firstWidget<AppEditText>(phoneNumberFieldFinder);
+    final phoneNumberInput =
+        tester.firstWidget<AppEditText>(phoneNumberFieldFinder);
 
     phoneNumberInput.textEditingController.text = '1234567890';
 
     loginScreenGlobalKey.currentState!.validatePhoneNumber(
-        phoneNumberInput.textEditingController.text,
+      phoneNumberInput.textEditingController.text,
     );
 
     await tester.pump();
 
-    await tester.tap(find.byKey(loginButtonKey),);
+    await tester.tap(
+      find.byKey(loginButtonKey),
+    );
 
     await tester.pumpAndSettle();
   });
