@@ -1,3 +1,4 @@
+import 'package:expense/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
@@ -48,5 +49,15 @@ Future navigateTo(Widget screen,
         duration: d,
         preventDuplicates: preventDuplicates,
         popGesture: popGesture);
+  }
+}
+
+ErrorType isValidUserName({required String userName}) {
+  if (userName.isEmpty) {
+    return ErrorType.emptyFieldError;
+  } else if (!userName.isAlphabetOnly) {
+    return ErrorType.invalidFieldError;
+  } else {
+    return ErrorType.none;
   }
 }

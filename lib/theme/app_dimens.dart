@@ -15,6 +15,7 @@ class Dimens {
   static const double icon24 = 24.0;
 
   static const double height5 = 5.0;
+  static const double height10 = 10.0;
   static const double height20 = 20.0;
   static const double height50 = 50.0;
 

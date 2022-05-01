@@ -6,26 +6,28 @@ import 'package:flutter/material.dart';
 class AppButton extends StatelessWidget {
   final bool isEnabled;
   final String buttonText;
-  final Function() buttonTapEvent;
+  final Function()? buttonTapEvent;
   final FocusNode? focusNode;
 
   const AppButton({
     Key? key,
     required this.isEnabled,
     required this.buttonText,
-    required this.buttonTapEvent,
+    this.buttonTapEvent,
     this.focusNode,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        if (focusNode != null) {
-          focusNode!.unfocus();
-        }
-        buttonTapEvent();
-      },
+      onTap: isEnabled
+          ? () {
+              if (focusNode != null) {
+                focusNode!.unfocus();
+              }
+              buttonTapEvent?.call();
+            }
+          : null,
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: Dimens.height50,
