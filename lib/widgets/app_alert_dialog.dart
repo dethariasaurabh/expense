@@ -39,47 +39,54 @@ class AppAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: const [
-          BoxShadow(
-            color: AppColors.lightGreyColor,
-            blurRadius: Dimens.radius10,
+    return Material(
+      color: AppColors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+              color: AppColors.lightGreyColor,
+              blurRadius: Dimens.radius10,
+            ),
+          ],
+          borderRadius: BorderRadius.circular(
+            Dimens.radius10,
           ),
-        ],
-        borderRadius: BorderRadius.circular(
-          Dimens.radius10,
+          color: AppColors.whiteColor,
         ),
-        color: AppColors.whiteColor,
-      ),
-      padding: const EdgeInsets.all(
-        Dimens.space24,
-      ),
-      child: Column(
-        children: [
-          Text(
-            title,
-            style: AppTextStyle.xLargeBlackText,
-          ),
-          const SizedBox(
-            height: Dimens.height10,
-          ),
-          Text(
-            message,
-            style: AppTextStyle.mediumText,
-          ),
-          const SizedBox(
-            height: Dimens.height20,
-          ),
-          AppButton(
-            isEnabled: true,
-            buttonText: buttonText,
-            buttonTapEvent: () {
-              Navigator.of(context).pop();
-              onTapEvent?.call();
-            },
-          )
-        ],
+        padding: const EdgeInsets.all(
+          Dimens.space24,
+        ),
+        margin: const EdgeInsets.all(
+          Dimens.space24,
+        ),
+        child: Wrap(
+          alignment: WrapAlignment.center,
+          children: [
+            Text(
+              title,
+              style: AppTextStyle.xLargeBlackText,
+            ),
+            Container(
+              height: Dimens.height20,
+            ),
+            Text(
+              message,
+              style: AppTextStyle.mediumText,
+            ),
+            Container(
+              height: Dimens.height20,
+            ),
+            AppButton(
+              isEnabled: true,
+              buttonText: buttonText,
+              buttonTapEvent: () {
+                Navigator.of(context).pop();
+                onTapEvent?.call();
+              },
+            )
+          ],
+        ),
       ),
     );
   }

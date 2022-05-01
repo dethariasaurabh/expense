@@ -11,4 +11,5 @@ class AppColors {
   static const Color backgroundColor = Color(0xffF6FFFE);
   static const Color primaryColor = Color(0xff55C5B8);
   static const Color errorTextColor = Color(0xffF15C35);
+  static const Color transparent = Color(0x00000000);
 }

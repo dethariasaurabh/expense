@@ -5,11 +5,14 @@ import 'package:expense/services/firebase_servcies.dart';
 import 'package:expense/theme/app_colors.dart';
 import 'package:expense/theme/app_dimens.dart';
 import 'package:expense/theme/app_text_style.dart';
+import 'package:expense/utils/keys.dart';
 import 'package:expense/utils/ui_utils.dart';
 import 'package:expense/widgets/app_button.dart';
 import 'package:expense/widgets/app_edit_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+GlobalKey<_LoginScreenState> loginScreenGlobalKey = GlobalKey<_LoginScreenState>();
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -43,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               HeaderWidget(
+                key: loginScreenHeaderKey,
                 title: StringKeys.signInTitle.tr,
                 desc: StringKeys.signInBody.tr,
               ),
@@ -50,6 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const Spacer(),
               Obx(
                 () => AppButton(
+                  key: loginButtonKey,
                   isEnabled: _isEdited.value && _errorText.value.isEmpty,
                   focusNode: phoneNumberFieldFocusNode,
                   buttonText: StringKeys.signInButton.tr,
@@ -84,6 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           child: CountryCodePicker(
+            key: countryCodePickerKey,
             showFlag: false,
             initialSelection: 'US',
             showFlagDialog: true,
@@ -101,6 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Obx(
             () {
               return AppEditText(
+                key: phoneNumberEditTextKey,
                 hintText: StringKeys.confirmationCodeHint.tr,
                 focusNode: phoneNumberFieldFocusNode,
                 textEditingController: _phoneNumberController,
