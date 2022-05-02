@@ -18,7 +18,9 @@ class Dimens {
   static const double height10 = 10.0;
   static const double height20 = 20.0;
   static const double height50 = 50.0;
+  static const double height80 = 80.0;
 
+  static const double width5 = 5.0;
   static const double width10 = 10.0;
   static const double width50 = 50.0;
 
