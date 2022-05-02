@@ -1,8 +1,11 @@
 import 'package:expense/screens/onboarding/login_screen.dart';
 import 'package:expense/services/firebase_servcies.dart';
 import 'package:expense/theme/app_colors.dart';
+import 'package:expense/theme/app_dimens.dart';
 import 'package:expense/theme/app_text_style.dart';
+import 'package:expense/utils/keys.dart';
 import 'package:expense/utils/ui_utils.dart';
+import 'package:expense/widgets/date_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +20,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Rx<String> userName = ''.obs;
+  Rx<DateTime> selectedDate = DateTime.now().obs;
 
   @override
   void initState() {
@@ -33,14 +37,30 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Obx(() {
-          return Text(
-            'Welcome ${userName.value}!',
-            style: AppTextStyle.mediumText.copyWith(
-              color: AppColors.secondaryTextColor,
+        child: Wrap(
+          children: [
+            Obx(() {
+              return Text(
+                'Welcome ${userName.value}!',
+                style: AppTextStyle.mediumText.copyWith(
+                  color: AppColors.secondaryTextColor,
+                ),
+              );
+            }),
+            SizedBox(
+              height: Dimens.height80,
+              child: Obx(() {
+                return DatePicker(
+                    key: datePickerWidgetStateKey,
+                    selectedDate: selectedDate.value,
+                    startDate: DateTime.now(),
+                    onDateChanged: (DateTime date) {
+                      selectedDate.value = date;
+                    });
+              }),
             ),
-          );
-        }),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(
