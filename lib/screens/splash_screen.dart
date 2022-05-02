@@ -5,6 +5,7 @@ import 'package:expense/screens/onboarding/login_screen.dart';
 import 'package:expense/services/firebase_servcies.dart';
 import 'package:expense/theme/app_text_style.dart';
 import 'package:expense/utils/keys.dart';
+import 'package:expense/utils/ui_utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,16 +24,18 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 2), () {
       User? currentUser = FirebaseServices.getCurrentUser();
       if (currentUser == null || currentUser.uid.isEmpty) {
-        Get.to(
-          () => LoginScreen(
+        navigateTo(
+          LoginScreen(
             key: loginScreenGlobalKey,
           ),
+          clearStack: true,
         );
       } else {
-        Get.to(
-          () => const HomeScreen(
+        navigateTo(
+          const HomeScreen(
             key: homeScreenKey,
           ),
+          clearStack: true,
         );
       }
     });
