@@ -72,6 +72,7 @@ class AppAlertDialog extends StatelessWidget {
             ),
             Text(
               message,
+              textAlign: TextAlign.center,
               style: AppTextStyle.mediumText,
             ),
             Container(

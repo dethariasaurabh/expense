@@ -20,4 +20,13 @@ Map<String, String> stringsEn = {
   StringKeys.tncAccepted:
       'By creating an account, I agree to the Terms of usage and Privacy Policy.',
   StringKeys.fullNameHint: 'Full name',
+  StringKeys.addRecordTitle: 'Add Record',
+  StringKeys.addRecordButton: 'Add Record',
+  StringKeys.addBudgetButton: 'Add Budget',
+  StringKeys.amountField: 'Amount',
+  StringKeys.recordTitleField: 'Title',
+  StringKeys.addButton: 'Add',
+  StringKeys.emptyRecordTitleButton: 'Please enter title.',
+  StringKeys.emptyRecordAmountButton: 'Please enter amount.',
+  StringKeys.emptyRecordCategoryButton: 'Please enter category.',
 };

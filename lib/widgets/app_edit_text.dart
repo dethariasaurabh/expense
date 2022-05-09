@@ -1,6 +1,7 @@
 import 'package:expense/theme/app_colors.dart';
 import 'package:expense/theme/app_dimens.dart';
 import 'package:expense/theme/app_text_style.dart';
+import 'package:expense/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class AppEditText extends StatefulWidget {
@@ -38,32 +39,34 @@ class _AppEditTextState extends State<AppEditText> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextFormField(
-          focusNode: widget.focusNode,
-          controller: widget.textEditingController,
-          style: widget.textStyle,
-          textInputAction: widget.textInputAction,
-          keyboardType: widget.textInputType,
-          keyboardAppearance: Brightness.light,
-          onChanged: widget.onTextChange,
-          maxLength: widget.maxLength,
-          decoration: InputDecoration(
-            hintText: widget.hintText,
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(
-                Dimens.radius10,
-              ),
-              borderSide: const BorderSide(
-                color: AppColors.secondaryTextColor,
-              ),
+        Container(
+          decoration: BoxDecoration(
+            boxShadow: AppTheme.whiteShadow,
+            borderRadius: BorderRadius.circular(
+              Dimens.radius10,
             ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(
-                Dimens.radius10,
-              ),
-              borderSide: const BorderSide(
+            color: AppColors.whiteColor,
+          ),
+          padding: const EdgeInsets.symmetric(
+            vertical: Dimens.height5,
+            horizontal: Dimens.height10,
+          ),
+          child: TextFormField(
+            focusNode: widget.focusNode,
+            controller: widget.textEditingController,
+            style: widget.textStyle,
+            textInputAction: widget.textInputAction,
+            keyboardType: widget.textInputType,
+            keyboardAppearance: Brightness.light,
+            onChanged: widget.onTextChange,
+            maxLength: widget.maxLength,
+            decoration: InputDecoration(
+              hintText: widget.hintText,
+              hintStyle: AppTextStyle.mediumText.copyWith(
                 color: AppColors.subTitleColor,
               ),
+              counterText: '',
+              border: InputBorder.none,
             ),
           ),
         ),

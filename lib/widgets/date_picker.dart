@@ -1,4 +1,3 @@
-import 'package:expense/theme/app_colors.dart';
 import 'package:expense/theme/app_dimens.dart';
 import 'package:expense/theme/app_text_style.dart';
 import 'package:expense/utils/keys.dart';
@@ -10,12 +9,22 @@ class DatePicker extends StatefulWidget {
   final DateTime selectedDate;
   final DateTime startDate;
   final Function(DateTime)? onDateChanged;
+  final Color? backgroundColor;
+  final Color? selectedColor;
+  final Color? textColor;
+  final Color? selectedTextColor;
+  final List<BoxShadow>? selectedItemShadow;
 
   const DatePicker({
     Key? key,
     required this.selectedDate,
     required this.startDate,
     this.onDateChanged,
+    this.backgroundColor = const Color(0xFFE5E5E5),
+    this.selectedColor = const Color(0xFF55C5B8),
+    this.textColor = const Color(0xFFAEAEAE),
+    this.selectedTextColor = const Color(0xFF39645F),
+    this.selectedItemShadow,
   }) : super(key: key);
 
   @override
@@ -65,8 +74,16 @@ class DatePickerState extends State<DatePicker> {
         itemBuilder: (listContext, index) {
           // get the date object based on the index position
           DateTime date;
+          DateTime currentTime = DateTime.now();
           DateTime _date = _startDate!.value.add(Duration(days: index));
-          date = DateTime(_date.year, _date.month, _date.day);
+          date = DateTime(
+            _date.year,
+            _date.month,
+            _date.day,
+            currentTime.hour,
+            currentTime.minute,
+            currentTime.second,
+          );
 
           bool isSelectedDate = widget.selectedDate.day == date.day &&
               widget.selectedDate.month == date.month &&
@@ -77,9 +94,8 @@ class DatePickerState extends State<DatePicker> {
             onTap: () {
               if (widget.onDateChanged != null) {
                 widget.onDateChanged!(date);
-              } else {
-                selectedDate!.value = date;
               }
+              selectedDate!.value = date;
             },
             child: Container(
               constraints: const BoxConstraints(
@@ -91,8 +107,9 @@ class DatePickerState extends State<DatePicker> {
                   Dimens.radius10,
                 ),
                 color: isSelectedDate
-                    ? AppColors.primaryColor
-                    : AppColors.lightGreyColor,
+                    ? widget.selectedColor
+                    : widget.backgroundColor,
+                boxShadow: isSelectedDate ? widget.selectedItemShadow : null,
               ),
               padding: const EdgeInsets.symmetric(
                 horizontal: Dimens.width5,
@@ -108,15 +125,15 @@ class DatePickerState extends State<DatePicker> {
                     date.day.toString(),
                     style: AppTextStyle.xLargeBoldText.copyWith(
                         color: isSelectedDate
-                            ? AppColors.whiteColor
-                            : AppColors.darkTitleColor),
+                            ? widget.selectedTextColor
+                            : widget.textColor),
                   ),
                   Text(
                     DateFormat.MMM().format(date),
                     style: AppTextStyle.mediumText.copyWith(
                         color: isSelectedDate
-                            ? AppColors.whiteColor
-                            : AppColors.darkTitleColor),
+                            ? widget.selectedTextColor
+                            : widget.textColor),
                   ),
                 ],
               ),
