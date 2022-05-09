@@ -7,6 +7,7 @@ import 'package:expense/theme/app_colors.dart';
 import 'package:expense/theme/app_dimens.dart';
 import 'package:expense/theme/app_text_style.dart';
 import 'package:expense/theme/app_theme.dart';
+import 'package:expense/utils/constants.dart';
 import 'package:expense/utils/keys.dart';
 import 'package:expense/widgets/app_alert_dialog.dart';
 import 'package:expense/widgets/app_button.dart';
@@ -192,11 +193,11 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                     String userUid = FirebaseServices.getCurrentUser()!.uid;
 
                     Map<String, dynamic> recordData = {
-                      'type': recordType.toString(),
-                      'date': selectedDate.value.toUtc().toIso8601String(),
-                      'title': recordTitleTextEditingController.text,
-                      'amount': amountTextEditingController.text,
-                      'category': selectedCategory.value.toJson(),
+                      recordTypeField: recordType.toString(),
+                      recordDateField: selectedDate.value.toUtc().toIso8601String(),
+                      recordTitleField: recordTitleTextEditingController.text,
+                      recordAmountField: amountTextEditingController.text,
+                      recordCategoryField: selectedCategory.value.toJson(),
                     };
 
                     await FirebaseServices.setRecordData(
@@ -206,9 +207,9 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
 
                     showAlertDialog(
                       context: context,
-                      title: 'Success',
-                      message: 'Your record has been added successfully.',
-                      buttonText: 'Ok',
+                      title: StringKeys.successTitle.tr,
+                      message: StringKeys.recordAddedSuccessMessage.tr,
+                      buttonText: StringKeys.okButton.tr,
                       onTapEvent: () => Get.back(),
                     );
                   },

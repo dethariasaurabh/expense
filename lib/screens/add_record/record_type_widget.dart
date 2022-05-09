@@ -1,3 +1,4 @@
+import 'package:expense/res/strings/str_keys.dart';
 import 'package:expense/screens/add_record/record_type_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,7 +28,7 @@ class RecordTypeWidget extends StatelessWidget {
               callBack(RecordType.income);
               return recordTypeExpense.value = false;
             },
-            title: 'Income',
+            title: StringKeys.recordTypeIncome.tr,
             isTypeExpense: !recordTypeExpense.value,
             recordType: RecordType.income,
           ),
@@ -38,7 +39,7 @@ class RecordTypeWidget extends StatelessWidget {
               callBack(RecordType.expense);
               return recordTypeExpense.value = true;
             },
-            title: 'Expense',
+            title: StringKeys.recordTypeExpense.tr,
             isTypeExpense: recordTypeExpense.value,
             recordType: RecordType.expense,
           ),

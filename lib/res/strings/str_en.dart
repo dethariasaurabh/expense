@@ -29,4 +29,9 @@ Map<String, String> stringsEn = {
   StringKeys.emptyRecordTitleButton: 'Please enter title.',
   StringKeys.emptyRecordAmountButton: 'Please enter amount.',
   StringKeys.emptyRecordCategoryButton: 'Please enter category.',
+  StringKeys.recordTypeIncome: 'Income',
+  StringKeys.recordTypeExpense: 'Expense',
+  StringKeys.successTitle: 'Success',
+  StringKeys.recordAddedSuccessMessage: 'Your record has been added successfully.',
+  StringKeys.okButton: 'OK',
 };
