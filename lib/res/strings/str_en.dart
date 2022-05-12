@@ -32,6 +32,7 @@ Map<String, String> stringsEn = {
   StringKeys.recordTypeIncome: 'Income',
   StringKeys.recordTypeExpense: 'Expense',
   StringKeys.successTitle: 'Success',
-  StringKeys.recordAddedSuccessMessage: 'Your record has been added successfully.',
+  StringKeys.recordAddedSuccessMessage:
+      'Your record has been added successfully.',
   StringKeys.okButton: 'OK',
 };

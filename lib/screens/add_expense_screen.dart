@@ -194,7 +194,8 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
 
                     Map<String, dynamic> recordData = {
                       recordTypeField: recordType.toString(),
-                      recordDateField: selectedDate.value.toUtc().toIso8601String(),
+                      recordDateField:
+                          selectedDate.value.toUtc().toIso8601String(),
                       recordTitleField: recordTitleTextEditingController.text,
                       recordAmountField: amountTextEditingController.text,
                       recordCategoryField: selectedCategory.value.toJson(),
