@@ -63,4 +63,25 @@ class FirebaseServices {
       return value;
     });
   }
+
+  static Future<List<QueryDocumentSnapshot<Object?>>>
+      getCategoriesData() async {
+    final CollectionReference snapShot = firestore.collection('categories');
+    final data = await snapShot.get();
+    return data.docs;
+  }
+
+  static Future<void> setRecordData({
+    required String userUid,
+    required Map<String, dynamic> recordData,
+  }) async {
+    await firestore
+        .collection('users')
+        .doc(userUid)
+        .collection('records')
+        .add(recordData)
+        .then((value) {
+      return value;
+    });
+  }
 }

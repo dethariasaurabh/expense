@@ -5,7 +5,7 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:expense/screens/home_screen.dart';
+import 'package:expense/screens/home_screen/home_screen.dart';
 import 'package:expense/screens/onboarding/login_screen.dart';
 import 'package:expense/screens/splash_screen.dart';
 import 'package:expense/services/firebase_servcies.dart';

@@ -5,6 +5,7 @@ import 'package:expense/services/firebase_servcies.dart';
 import 'package:expense/theme/app_colors.dart';
 import 'package:expense/theme/app_dimens.dart';
 import 'package:expense/theme/app_text_style.dart';
+import 'package:expense/theme/app_theme.dart';
 import 'package:expense/utils/keys.dart';
 import 'package:expense/utils/ui_utils.dart';
 import 'package:expense/widgets/app_button.dart';
@@ -34,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.whiteColor,
       body: SafeArea(
         bottom: true,
         top: true,
@@ -85,9 +86,8 @@ class _LoginScreenState extends State<LoginScreen> {
             borderRadius: BorderRadius.circular(
               Dimens.radius10,
             ),
-            border: Border.all(
-              color: AppColors.subTitleColor,
-            ),
+            boxShadow: AppTheme.whiteShadow,
+            color: AppColors.whiteColor,
           ),
           child: CountryCodePicker(
             key: countryCodePickerKey,

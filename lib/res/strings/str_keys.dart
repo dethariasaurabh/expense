@@ -14,4 +14,18 @@ class StringKeys {
   static String createAccountButton = 'createAccountButton';
   static String tncAccepted = 'tncAccepted';
   static String fullNameHint = 'fullNameHint';
+  static String addRecordTitle = 'addRecordTitle';
+  static String addRecordButton = 'addRecordButton';
+  static String amountField = 'amountField';
+  static String recordTitleField = 'recordTitleField';
+  static String addButton = 'addButton';
+  static String addBudgetButton = 'addBudgetButton';
+  static String emptyRecordTitleButton = 'emptyRecordTitleButton';
+  static String emptyRecordAmountButton = 'emptyRecordAmountButton';
+  static String emptyRecordCategoryButton = 'emptyRecordCategoryButton';
+  static String recordTypeIncome = 'recordTypeIncome';
+  static String recordTypeExpense = 'recordTypeExpense';
+  static String successTitle = 'successTitle';
+  static String recordAddedSuccessMessage = 'recordAddedSuccessMessage';
+  static String okButton = 'okButton';
 }

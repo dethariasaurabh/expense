@@ -1,6 +1,6 @@
 import 'package:expense/model/user_model.dart';
 import 'package:expense/res/strings/str_keys.dart';
-import 'package:expense/screens/home_screen.dart';
+import 'package:expense/screens/home_screen/home_screen.dart';
 import 'package:expense/screens/onboarding/widgets/header.dart';
 import 'package:expense/services/firebase_servcies.dart';
 import 'package:expense/theme/app_colors.dart';
@@ -37,7 +37,7 @@ class _CreateAccountState extends State<CreateAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.whiteColor,
       body: SafeArea(
         bottom: true,
         top: true,

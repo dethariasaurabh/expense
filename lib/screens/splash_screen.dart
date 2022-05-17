@@ -1,6 +1,6 @@
 import 'package:expense/res/images/images.dart';
 import 'package:expense/res/strings/str_keys.dart';
-import 'package:expense/screens/home_screen.dart';
+import 'package:expense/screens/home_screen/home_screen.dart';
 import 'package:expense/screens/onboarding/login_screen.dart';
 import 'package:expense/services/firebase_servcies.dart';
 import 'package:expense/theme/app_text_style.dart';
